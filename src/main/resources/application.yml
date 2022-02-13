@@ -9,10 +9,11 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/spring_db
-    username: root
-    password: root
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/sunglowsys_db
+    username: postgres
+    password: Password@123
   jpa:
     hibernate:
       ddl-auto: update
-      dialect: org.hibernate.dialect.MySQL8Dialec
+      dialect: org.hibernate.dialect.PostgreSQLDialect

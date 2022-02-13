@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
-@Table(name = "root_type")
+@Table(name = "room_type")
 public class RoomType {
 
     @Id
