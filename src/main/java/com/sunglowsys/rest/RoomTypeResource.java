@@ -73,7 +73,7 @@ public class RoomTypeResource {
     public ResponseEntity<Void> deleteRoomType(@PathVariable Long id) {
         roomTypeService.delete(id);
         return ResponseEntity
-                .noContent()
+                .ok()
                 .build();
     }
 }
