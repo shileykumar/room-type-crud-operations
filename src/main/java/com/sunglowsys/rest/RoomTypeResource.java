@@ -62,7 +62,7 @@ public class RoomTypeResource {
 
     @GetMapping("/room-types/{id}")
     public ResponseEntity<RoomType> getRoomType(@PathVariable Long id) {
-        log.debug("REST request to get RoomType");
+        log.debug("REST request to get RoomType : {} ", id);
         Optional<RoomType> result = roomTypeService.findById(id);
         return ResponseEntity
                 .ok()

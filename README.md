@@ -1,97 +1,87 @@
-# room-type-crud-operations
-## Implement Pagination, Transaction and Bean Validation
-### steps to create project
+# Room Type CRUD operations
+## Requirements:
+- Java ( jdk 1.8+)
+- Maven 3.0+
+- Spring Boot(2.6.3)
+- Database(postgreSQL)
+- Database Drivers
+- IDE( IntelliJ or Eclipse)
+- Postman (To test application)
+## Features
+- Create `POST` `http://localhost:8080/api/room-types`
+- Update `PUT` `http://localhost:8080/api/room-types`
+- Get `GET` `http://localhost:8080/api/room-types`
+- Get `GET` `http://localhost:8080/api/room-types/{id}`
+- Delete `DELETE` `http://localhost:8080/api/room-types/{id}`
+## Dependency added
+- spring web
+- spring data jpa
+- bean validation
+- postgresql
 
+## Steps to create Application
+- Create project using [Spring Initializer](https://start.spring.io/)
 
-- create project using spring initializr([url](https://start.spring.io/))
+- Select `maven`
 
-- select maven
+- Select `spring boot version`
 
-- select spring boot version
+- Select `java version`
 
-- select java version
-
-- project metadata(
-  group(com.sunglowsys),
-  artifact(room-type-crud-operation),
+- Project metadata
+  ```
+  group(com.sunglowsys)
+  artifact(room-type-crud-operation)
   package name(com.sunglowsys)
-  )
+  ```
 
-- select packaging(jar)
+- Select Packaging `jar`
 
-- add dependency(spring web, spring data jpa, mysql driver)
+- Add dependencies `Spring Web`, `Spring Data JPA`, `PostgreSQL Driver`, `Bean Validation`
 
-- Generate jar file
+- Click on `Generate`
 
-- Extract the generated file
+- Extract the generated zip file
 
-- open intelliJ IDEA(or any IDEA)
+- Import application in IntelliJ or Eclipse
 
-- load the project 
+- Implement CRUD Operations
 
-- create sub packages(
-  domain,
-  repository,
-  service,
-  rest
-  )
+## How to run application
+- Open terminal and go inside application directory(room-type-crud-operation)
+- Run command `mvn`
 
-- inside domain package create Hotel domain class and use @Entity annotation on this class
+## Steps to Test application (Postman)
 
-- In Hotel class define all the required properties of Hotel
-
-- inside repository package create HotelRepository interface extending JpaRepository and use @Repository annotation on this interface 
-
-- inside service package create HotelService interface
-
-- In HotelService interface create method
-```
-   save(RoomType roomType);
-   update(RoomType roomType);
-   findAll(Pagable pagable);
-   findById(Long id);
-   delete(Long id);
-```
-
-- inside service package create HotelServiceImpl class implements HotelService and use @Service annotation on this class
-
-- In HotelServiceImpl class implement all the methods of HotelService interface
-### service method for pagination
-```
- @Override
-  public Page<RoomType> findAll(Pageable pageable) {
-          log.debug("Request to find RoomType : {}", pageable.toString());
-          return roomTypeRepository.findAll(pageable);
+###  Create API
+- Method `POST`
+- URL `http://localhost:8080/api/room-types`
+- JSON Body
+  ```
+  {
+      "id": null,
+      "name": "AC Room"
   }
-```
+  ```
+###  Update API
+- Method `PUT`
+- URL `http://localhost:8080/api/room-types`
+- JSON Body
+  ```
+  {
+      "id": 1,
+      "name": "Non AC Room"
+  }
+  ```
+###  Get All API
+- Method `GET`
+- URL `http://localhost:8080/api/room-types?page=0&size=10`
 
-- Inside rest HotelResource class and use @RestController annotation on this class,
+###  Get By ID API
+- Method `GET`
+- URL `http://localhost:8080/api/customers/1`
 
-- in this class create all the endPoints(methods)-
+###  Delete API
+- Method `DELETE`
+- URL `http://localhost:8080/api/customers/1`
 
-``` 
-      @PostMapping()
-      createHotel(){}
-      
-      @PutMapping()
-      udateHotel(){}
-      
-      @GetMapping()
-      getAllHotels(){}
-      
-      @GetMapping()
-      getHotel(){}
-      
-      @DeleteMapping()
-      deleteHotel(){}
-```
-### endPoint for Pagination 
-````java
-  @GetMapping("/room-types")
-    public ResponseEntity<List<RoomType>> getAllRoomTypes(Pageable pageable) {
-        log.debug("REST request to get RoomTypes : {}", pageable.toString());
-        Page<RoomType> result = roomTypeService.findAll(pageable);
-        return ResponseEntity
-                .ok()
-                .body(result.getContent());
-    }
