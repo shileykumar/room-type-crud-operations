@@ -79,9 +79,9 @@
 
 ###  Get By ID API
 - Method `GET`
-- URL `http://localhost:8080/api/customers/1`
+- URL `http://localhost:8080/api/room-types/1`
 
 ###  Delete API
 - Method `DELETE`
-- URL `http://localhost:8080/api/customers/1`
+- URL `http://localhost:8080/api/room-types/1`
 
